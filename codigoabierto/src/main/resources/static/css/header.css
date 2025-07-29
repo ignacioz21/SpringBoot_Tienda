@@ -1,0 +1,18 @@
+:root {
+    --header-color: #f2f1f0;
+    --header-bg: #2a4026;
+    --header-second-clr: #9c875d;
+    --header-font:"Space Grotesk", sans-serif;
+    --header-font-title:"Sora", sans-serif ;
+}
+
+.header-nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0;
+    margin: 0;
+    font-family: var(--header-font);
+    background-color: var(--header-bg);
+}

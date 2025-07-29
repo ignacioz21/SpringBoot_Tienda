@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Codigo Abierto</title>
+    <!-- BoxIcons css -->
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <!-- Custom css -->
+     <link rel="stylesheet" th:href="@{/css/index.css}">
+     <link rel="stylesheet" th:href="@{/css/header.css}"/>
+    <title>Document</title>
+</head>
+<body>
+    <header th:insert="~{layout/header :: header}"></header>
+    <main th:insert="~{layout/home :: main}"></main>
+    <h1>Hello world</h1>
+</body>
+</html>

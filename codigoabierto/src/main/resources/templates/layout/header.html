@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="https:/www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <title th:replace="${title}">Codigo Abierto</title>
+    </head>
+    <body>
+        <header class="header-nav" th:fragment="header">
+            <div id="logo">
+                <h1 id="logo-title">Codigo Abierto</h1>
+            </div>
+            <nav class="nav-bar">
+                <a th:href="@{/}">Inicio</a>
+                <a th:href="@{/productos}">Productos</a>
+                <a th:href="@{/categorias}">Categorias</a>
+                <a th:href="@{/compras_mayoristas}">Compras Mayoristas</a>
+                <a th:href="@{/informacion_ayuda}">Informacion y ayuda</a>
+            </nav>
+            <div class="information-section">
+                <i class='bx bx-search-alt'></i>
+                <h2 id="sign-up">Iniciar Sesion</h2>
+            </div>
+
+        </header>
+    </body> 
+</html>
