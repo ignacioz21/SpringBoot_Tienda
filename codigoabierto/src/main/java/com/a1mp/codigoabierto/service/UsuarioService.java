@@ -1,19 +1,46 @@
 package com.a1mp.codigoabierto.service;
 
-import com.a1mp.codigoabierto.domain.Usuario;
+import com.a1mp.codigoabierto.domain.*;
+import com.a1mp.codigoabierto.dao.*;
 import java.util.List;
 import java.util.Optional;
+import java.util.*;
 
-public interface UsuarioService {  
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
-    public List<Usuario> getUsuarios();
+@Service
+public class UsuarioService {  
 
-    public Usuario getUsuario(Usuario usuario);
+    private final UsuarioDao usuarioRepository;
+    private final RolDao rolRepository;
+    private final BCryptPasswordEncoder passwordEncoder;
 
-    public Optional<Usuario> getUsuarioLogin(String email);
+    public UsuarioService(UsuarioDao usuarioRepository, RolDao rolRepository, BCryptPasswordEncoder passwordEncoder) {
+        this.usuarioRepository = usuarioRepository;
+        this.rolRepository = rolRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    public void save(Usuario usuario);
+    public Usuario registrarUsuario(Usuario usuario, String nombreRol) {
+        usuario.setContrsena(passwordEncoder.encode(usuario.getContrsena()));
 
-    public void delete(Usuario usuario);
+        Rol rol = rolRepository.findByNombre(nombreRol)
+                .orElseThrow(() -> new RuntimeException("Rol no encontrado"));
+
+        List<Rol> roles = new ArrayList<>();
+        roles.add(rol);
+        usuario.setRoles(roles);
+
+        return usuarioRepository.save(usuario);
+    }
+
+    public Optional<Usuario> buscarPorEmail(String email) {
+        return usuarioRepository.findByEmail(email);
+    }
+
+    public List<Usuario> listar(){
+        return usuarioRepository.findAll();
+    }
 
 }

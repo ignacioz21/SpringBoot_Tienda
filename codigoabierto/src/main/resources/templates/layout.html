@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Mi App</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header>
+    <nav>
+        <a th:href="@{/usuario}">Inicio</a>
+
+        <!-- Botón solo visible para ADMIN -->
+        <a th:href="@{/admin}" sec:authorize="hasRole('ADMIN')">Panel Admin</a>
+
+        <!-- Visible solo si está logueado -->
+        <span sec:authorize="isAuthenticated()">Hola, <span sec:authentication="name"></span></span>
+
+        <!-- Login/Logout -->
+        <a th:href="@{/login}" sec:authorize="isAnonymous()">Iniciar Sesión</a>
+        <a th:href="@{/logout}" sec:authorize="isAuthenticated()">Cerrar Sesión</a>
+    </nav>
+</header>
+
+<main>
+    <div th:replace="${contenido}"></div>
+</main>
+
+</body>
+</html>
