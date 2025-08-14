@@ -4,6 +4,8 @@
 <div th:fragment="contenido">
     <h1>Bienvenido Usuario</h1>
     <p>Contenido visible para usuarios y admins.</p>
+    <button sec:authorize="hasRole('ADMIN')">btn dolo para admin</button>
+<button sec:authorize="hasAnyRole('ADMIN','USER')">Este btn lo pueden ver ambos</button>
 </div>
 </body>
 </html>

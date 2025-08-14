@@ -4,8 +4,6 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import java.util.List;
-
 
 @Data
 @Entity
@@ -19,20 +17,16 @@ public class Usuario {
     @Column(name = "id_usuario")
     private Long id;
     
-    @Column(nullable = false)
+    @Column(name = "nombre", nullable = false)
     private String nombre;
 
-    @Column(nullable = false)
+    @Column(name = "apellido", nullable = false)
     private String apellido;
 
-    @Column(nullable = false)
+    @Column(name = "email", nullable = false, unique = true)
     private String email;
 
-    @Column(nullable = false, name = "password")
+    @Column(name = "password", nullable = false)
     private String contrsena;
-
-    @OneToMany
-    @JoinColumn(name = "id_rol", nullable = false)
-    private List<Rol> roles;
     
 }
